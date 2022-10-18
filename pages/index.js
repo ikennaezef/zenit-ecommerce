@@ -1,13 +1,14 @@
 import { Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Image from "next/image";
-import { NavBar } from "../components";
-import styles from "../styles/Home.module.css";
+import { Banner, NavBar } from "../components";
 
 export default function Home() {
 	return (
 		<div>
 			<NavBar />
+			<Banner />
+			<div>Hello guys</div>
 		</div>
 	);
 }
