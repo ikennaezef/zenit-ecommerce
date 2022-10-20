@@ -2,13 +2,12 @@ import {
 	Box,
 	Button,
 	Container,
-	Divider,
 	Flex,
 	Grid,
 	Heading,
-	Stack,
 	Text,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { TbTruckDelivery } from "react-icons/tb";
@@ -27,7 +26,11 @@ const Banner = () => {
 				h="30rem">
 				<Container maxW="container.lg">
 					<Grid alignContent="center" py={5}>
-						<Box color="white">
+						<Box
+							color="white"
+							as={motion.div}
+							initial={{ opacity: 0, transition: { duration: 1 } }}
+							animate={{ opacity: 1 }}>
 							<Flex direction="column" spacing={1}>
 								<Text color="black" fontStyle="italic" fontWeight={500} mb={2}>
 									Buy 2 Get 1 Free!!
