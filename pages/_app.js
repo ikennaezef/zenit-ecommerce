@@ -3,7 +3,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 const fonts = {
 	body: "Work Sans, sans-serif",
-	heading: "Inter, sans-serif",
+	heading: "Zilla Slab, serif",
 };
 
 const theme = extendTheme({ fonts });
