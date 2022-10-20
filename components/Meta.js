@@ -1,13 +1,21 @@
+import React from "react";
 import Head from "next/head";
 
-import React from "react";
-
-const Meta = () => {
+const Meta = ({ title, description }) => {
 	return (
 		<Head>
-			<title></title>
+			<meta name="description" content={description} />
+			<title>{title}</title>
+
+			<meta name="application-name" content="Zenit Stores" />
 		</Head>
 	);
 };
 
 export default Meta;
+
+Meta.defaultProps = {
+	title: "Zenit Stores",
+	description:
+		"Zenit Stores is your one stop ecommerce choice for elctronics, home accessories, fashion apparel and much more.",
+};
