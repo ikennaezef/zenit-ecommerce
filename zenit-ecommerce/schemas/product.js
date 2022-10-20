@@ -23,6 +23,19 @@ export default {
 			type: "number",
 		},
 		{
+			title: "On Sale",
+			name: "onSale",
+			type: "boolean",
+			description: "Is this product on a sale?",
+		},
+		{
+			title: "Old Price",
+			name: "oldPrice",
+			type: "number",
+			description: "The former price of the product before the sale",
+			hidden: ({ document }) => !document?.onSale,
+		},
+		{
 			title: "Tags",
 			name: "tags",
 			type: "array",
@@ -66,6 +79,7 @@ export default {
 			name: "description",
 			title: "Description",
 			type: "blockContent",
+			description: "Tell your customers about this product",
 		},
 	],
 

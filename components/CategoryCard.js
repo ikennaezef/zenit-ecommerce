@@ -43,7 +43,7 @@ const CategoryCard = ({ category }) => {
 					color="black"
 					rounded="none"
 					w="full"
-					_hover={{ bgColor: "blue.500", color: "white" }}
+					_hover={{ bgColor: "blue.400", color: "white" }}
 					zIndex={30}>
 					{category.title}
 				</Button>
