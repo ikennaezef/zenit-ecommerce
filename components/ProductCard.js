@@ -10,7 +10,8 @@ const ProductCard = ({ product }) => {
 		<Box
 			as={motion.div}
 			initial={{ opacity: 0, transition: { duration: 1 } }}
-			whileInView={{ opacity: 1 }}>
+			whileInView={{ opacity: 1 }}
+			shadow="md">
 			<Box position="relative">
 				<Image
 					src={urlFor(product.image[0]).url()}
@@ -55,8 +56,8 @@ const ProductCard = ({ product }) => {
 					VIEW
 				</Button>
 			</Box>
-			<Box textAlign="center">
-				<Text color="gray.300">{product.vendor.toUpperCase()}</Text>
+			<Box textAlign="center" pb={2}>
+				<Text color="gray.400">{product.vendor.toUpperCase()}</Text>
 				<Text fontSize="1.1rem">{product.title}</Text>
 				<Text fontWeight={600} fontSize="1.1rem" color="orange.400">
 					N{product.price.toFixed(2)}
