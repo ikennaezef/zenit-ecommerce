@@ -17,6 +17,8 @@ const ProductCard = ({ product }) => {
 					src={urlFor(product.image[0]).url()}
 					alt={product.title}
 					width="full"
+					minHeight="14rem"
+					objectFit="cover"
 				/>
 				<Flex
 					direction="column"
