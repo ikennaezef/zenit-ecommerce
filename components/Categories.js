@@ -6,18 +6,22 @@ const categoriesData = [
 	{
 		title: "Fashion",
 		image: "/fashion.jpg",
+		link: "/category/fashion",
 	},
 	{
 		title: "Accessories",
 		image: "/accessories.jpg",
+		link: "/category/accessories",
 	},
 	{
 		title: "Electronics",
 		image: "/electronics.jpg",
+		link: "/category/electronics",
 	},
 	{
 		title: "Home",
 		image: "/home.jpg",
+		link: "/category/home",
 	},
 ];
 

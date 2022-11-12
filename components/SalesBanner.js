@@ -1,10 +1,11 @@
-import { Box, Button, Container, Heading, Text } from "@chakra-ui/react";
 import React from "react";
+import NextLink from "next/link";
+import { Box, Button, Container, Heading, Text } from "@chakra-ui/react";
 import { BiRightArrowAlt } from "react-icons/bi";
 
 const SalesBanner = () => {
 	return (
-		<Box>
+		<Box my={12}>
 			<Box
 				bgImage="/images/clothes.jpg"
 				bgPosition="center"
@@ -35,14 +36,16 @@ const SalesBanner = () => {
 						</Text>
 						<Heading mb={4}>Summer Season Sale</Heading>
 						<Text mb={5}>Free shipping on orders above N25000</Text>
-						<Button
-							rounded="sm"
-							bgColor="blue.600"
-							_hover={{ bgColor: "blue.500" }}
-							px={8}
-							rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
-							SHOP NOW
-						</Button>
+						<NextLink href="/categories">
+							<Button
+								rounded="sm"
+								bgColor="blue.600"
+								_hover={{ bgColor: "blue.500" }}
+								px={8}
+								rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
+								SHOP NOW
+							</Button>
+						</NextLink>
 					</Box>
 				</Container>
 			</Box>

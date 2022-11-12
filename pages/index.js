@@ -1,15 +1,22 @@
 import React from "react";
-import { Banner, BestSellers, Categories, ProductCard } from "../components";
+import {
+	Banner,
+	ProductsSection,
+	Categories,
+	SalesBanner,
+	SmallBanners,
+} from "../components";
 import { sanityClient } from "../lib/sanity";
 
 export default function Home({ products }) {
-	console.log(products);
 	return (
 		<div>
 			<Banner />
 			<Categories />
-			<BestSellers products={products} />
-			<div>Hello guys</div>
+			<ProductsSection title="Best Sellers" products={products.slice(1, 5)} />
+			<SmallBanners />
+			<ProductsSection title="Our Featured" products={products.slice(4, 8)} />
+			<SalesBanner />
 		</div>
 	);
 }
@@ -19,9 +26,12 @@ export const getServerSideProps = async () => {
 		_id,
 		'category': categories[0] -> title,
 		'vendor': vendor -> title,
+		slug,
 		title,
 		price,
-		image
+		image,
+		onSale,
+		oldPrice
 	}`;
 
 	const products = await sanityClient.fetch(query);

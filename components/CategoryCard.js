@@ -1,8 +1,9 @@
+import React from "react";
+import NextLink from "next/link";
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import React from "react";
 
-const CategoryCard = ({ category }) => {
+const CategoryCard = ({ category, link }) => {
 	return (
 		<Box
 			position="relative"
@@ -38,15 +39,17 @@ const CategoryCard = ({ category }) => {
 				position="absolute"
 				bottom="0.7rem"
 				px={3}>
-				<Button
-					bgColor="white"
-					color="black"
-					rounded="none"
-					w="full"
-					_hover={{ bgColor: "blue.400", color: "white" }}
-					zIndex={30}>
-					{category.title}
-				</Button>
+				<NextLink href={category.link}>
+					<Button
+						bgColor="white"
+						color="black"
+						rounded="none"
+						w="full"
+						_hover={{ bgColor: "blue.400", color: "white" }}
+						zIndex={30}>
+						{category.title}
+					</Button>
+				</NextLink>
 			</Flex>
 		</Box>
 	);

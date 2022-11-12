@@ -1,3 +1,4 @@
+import React from "react";
 import {
 	Box,
 	Button,
@@ -8,8 +9,8 @@ import {
 	Image,
 	Text,
 } from "@chakra-ui/react";
+import Nextlink from "next/link";
 import { motion } from "framer-motion";
-import React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 
 const SmallBanners = () => {
@@ -60,14 +61,16 @@ const SmallBanners = () => {
 							</Text>
 							<Text>STARTING AT N6000</Text>
 							<Divider h={1} w={12} bgColor="white" my={2} />
-							<Button
-								variant="link"
-								color="white"
-								rounded="none"
-								p={0}
-								rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
-								SHOP NOW
-							</Button>
+							<Nextlink href="/category/fashion">
+								<Button
+									variant="link"
+									color="white"
+									rounded="none"
+									p={0}
+									rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
+									SHOP NOW
+								</Button>
+							</Nextlink>
 						</Flex>
 					</Box>
 					<Box
@@ -112,14 +115,16 @@ const SmallBanners = () => {
 							<Text fontSize="1.6rem" fontWeight="600" mb={2}>
 								Black Friday Sale
 							</Text>
-							<Button
-								variant="outline"
-								borderColor="blue.500"
-								color="blue.500"
-								rounded="none"
-								rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
-								SHOP NOW
-							</Button>
+							<Nextlink href="/categories">
+								<Button
+									variant="outline"
+									borderColor="blue.500"
+									color="blue.500"
+									rounded="none"
+									rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
+									SHOP NOW
+								</Button>
+							</Nextlink>
 						</Flex>
 					</Box>
 					<Box
@@ -166,13 +171,15 @@ const SmallBanners = () => {
 							</Text>
 							<Text>30% OFF</Text>
 							<Divider h={1} w={12} bgColor="white" my={2} />
-							<Button
-								variant="link"
-								color="white"
-								p={0}
-								rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
-								SHOP NOW
-							</Button>
+							<Nextlink href="/category/fashion">
+								<Button
+									variant="link"
+									color="white"
+									p={0}
+									rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
+									SHOP NOW
+								</Button>
+							</Nextlink>
 						</Flex>
 					</Box>
 				</Grid>
