@@ -24,7 +24,7 @@ const Banner = () => {
 				display="flex"
 				alignItems="center"
 				h="30rem">
-				<Container maxW="container.lg">
+				<Container maxW="container.xl">
 					<Grid alignContent="center" py={5}>
 						<Box
 							color="white"

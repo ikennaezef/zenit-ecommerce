@@ -91,7 +91,7 @@ const NavBar = () => {
 							<NextLink href="/">
 								<Link fontWeight={500}>Home</Link>
 							</NextLink>
-							<NextLink href="/">
+							<NextLink href="/categories">
 								<Link fontWeight={500}>Categories</Link>
 							</NextLink>
 							<NextLink href="/blog">
@@ -128,6 +128,18 @@ const NavBar = () => {
 												justifyContent="space-between"
 												onClick={() => setShowNav(false)}>
 												Home{" "}
+												<BiChevronRight fontSize="1.6rem" color="#888888" />
+											</Link>
+										</NextLink>
+									</ListItem>
+									<Divider my={4} bg="#CCCCCC" />
+									<ListItem fontSize="1.3rem">
+										<NextLink href="/categories">
+											<Link
+												display="flex"
+												justifyContent="space-between"
+												onClick={() => setShowNav(false)}>
+												Categories{" "}
 												<BiChevronRight fontSize="1.6rem" color="#888888" />
 											</Link>
 										</NextLink>

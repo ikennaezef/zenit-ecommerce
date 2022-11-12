@@ -24,7 +24,7 @@ const categoriesData = [
 const Categories = () => {
 	return (
 		<Box pt={12}>
-			<Container maxW="container.lg">
+			<Container maxW="container.xl">
 				<Heading mb={4} textAlign="center">
 					Our Categories
 				</Heading>

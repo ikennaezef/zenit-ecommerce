@@ -64,7 +64,7 @@ const ProductCard = ({ product }) => {
 				</Flex>
 			</Box>
 			<Box mb={2}>
-				<Link href={`product/${product.slug.current}`}>
+				<Link href={`/product/${product.slug.current}`}>
 					<Button
 						w="full"
 						py={6}

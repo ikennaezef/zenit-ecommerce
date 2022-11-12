@@ -8,14 +8,16 @@ const ProductsSection = ({ title, products, extraLink }) => {
 	return (
 		<Box mt={12}>
 			<Container maxWidth="container.xl">
-				<Heading
-					as={motion.h2}
-					initial={{ opacity: 0, transition: { duration: 1 } }}
-					whileInView={{ opacity: 1 }}
-					textAlign="center"
-					mb={5}>
-					{title}
-				</Heading>
+				{title && (
+					<Heading
+						as={motion.h2}
+						initial={{ opacity: 0, transition: { duration: 1 } }}
+						whileInView={{ opacity: 1 }}
+						textAlign="center"
+						mb={5}>
+						{title}
+					</Heading>
+				)}
 				<Grid
 					gap={4}
 					templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}>

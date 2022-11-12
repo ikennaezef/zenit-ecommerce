@@ -1,9 +1,11 @@
 export { default as NavBar } from "./NavBar";
 export { default as Meta } from "./Meta";
 export { default as Banner } from "./Banner";
+export { default as SalesBanner } from "./SalesBanner";
+export { default as SmallBanners } from "./SmallBanners";
 export { default as Categories } from "./Categories";
 export { default as CategoryCard } from "./CategoryCard";
-export { default as BestSellers } from "./BestSellers";
+export { default as ProductsSection } from "./ProductsSection";
 export { default as ProductCard } from "./ProductCard";
 export { default as Footer } from "./Footer";
 export { default as Layout } from "./Layout";
