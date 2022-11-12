@@ -1,4 +1,5 @@
 import React from "react";
+import NextLink from "next/link";
 import {
 	Box,
 	Button,
@@ -19,18 +20,20 @@ const Footer = () => {
 	return (
 		<footer style={{ marginTop: "2rem" }}>
 			<Box bgColor="blackAlpha.800" py={12} color="gray.100">
-				<Container maxWidth="container.lg">
+				<Container maxWidth="container.xl">
 					<Flex
 						gap={5}
 						justify="space-between"
 						direction={{ base: "column", md: "row" }}>
 						<Box>
-							<Flex align="center" gap="0.2rem">
-								<GiMountaintop color="#4299E1" fontSize="1.7rem" />
-								<Heading fontWeight={700} color="white" fontSize="2rem">
-									ZENIT
-								</Heading>
-							</Flex>
+							<NextLink href="/">
+								<Flex align="center" gap="0.2rem">
+									<GiMountaintop color="#4299E1" fontSize="1.7rem" />
+									<Heading fontWeight={700} color="white" fontSize="2rem">
+										ZENIT
+									</Heading>
+								</Flex>
+							</NextLink>
 						</Box>
 						<Box>
 							<Heading fontSize="1.6rem">Subscribe to our Newsletter</Heading>
@@ -41,6 +44,7 @@ const Footer = () => {
 						<Flex gap={2}>
 							<Input
 								placeholder="Email address here..."
+								_placeholder={{ color: "whiteAlpha.400" }}
 								bgColor="whiteAlpha.200"
 								border="none"
 								rounded="sm"
@@ -56,7 +60,7 @@ const Footer = () => {
 					</Flex>
 				</Container>
 				<Divider my={8} h="1px" />
-				<Container maxWidth="container.lg">
+				<Container maxWidth="container.xl">
 					<Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={3}>
 						<Box>
 							<Heading mb={4} fontWeight="600" fontSize="1.4rem">
@@ -173,7 +177,7 @@ const Footer = () => {
 					</Grid>
 				</Container>
 				<Divider my={8} h="1px" />
-				<Container maxWidth="container.lg">
+				<Container maxWidth="container.xl">
 					<Flex
 						direction={{ base: "column", md: "row" }}
 						gap={4}

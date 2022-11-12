@@ -32,15 +32,17 @@ const NavBar = () => {
 
 	return (
 		<nav style={{ position: "relative" }}>
-			<Container maxW="container.lg" borderBottom="1px" borderColor="gray.200">
+			<Container maxW="container.xl" borderBottom="1px" borderColor="gray.200">
 				<Box py={5}>
 					<Flex align="center" justify="space-between">
-						<Flex align="center" gap="0.2rem">
-							<GiMountaintop color="#2B6CB0" fontSize="1.7rem" />
-							<Heading fontWeight={700} fontSize="2rem">
-								ZENIT
-							</Heading>
-						</Flex>
+						<NextLink href="/">
+							<Flex align="center" gap="0.2rem">
+								<GiMountaintop color="#2B6CB0" fontSize="1.7rem" />
+								<Heading fontWeight={700} fontSize="2rem">
+									ZENIT
+								</Heading>
+							</Flex>
+						</NextLink>
 						<Show above="md">
 							<Box>
 								<InputGroup size="md" py={0} borderColor="gray.500">
@@ -106,7 +108,7 @@ const NavBar = () => {
 							top="0"
 							right={showNav ? "0" : "-100%"}
 							bg="white"
-							zIndex={5}
+							zIndex={50}
 							px={5}
 							py={10}
 							w="full"
