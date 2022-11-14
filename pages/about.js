@@ -43,7 +43,10 @@ const About = () => {
 			</Box>
 			<Box py={6}>
 				<Container maxWidth="container.xl">
-					<Flex gap={6} align="center" flexWrap="wrap">
+					<Flex
+						direction={{ base: "column", md: "row" }}
+						gap={6}
+						align="center">
 						<Box>
 							<Image src="/images/customer.jpg" />
 						</Box>
@@ -65,15 +68,15 @@ const About = () => {
 						</Box>
 					</Flex>
 					<Flex
-						flexWrap="wrap"
 						gap={6}
 						mt={12}
 						align="center"
-						direction="row-reverse"
+						direction={{ base: "column", md: "row-reverse" }}
 						as={motion.div}
 						variants={fadeInUp}
 						initial={"initial"}
-						whileInView={"animate"}>
+						whileInView={"animate"}
+						viewport={{ once: true }}>
 						<Box>
 							<Image src="/images/support.jpg" />
 						</Box>
@@ -95,14 +98,15 @@ const About = () => {
 						</Box>
 					</Flex>
 					<Flex
-						flexWrap="wrap"
+						direction={{ base: "column", md: "row" }}
 						gap={6}
 						mt={12}
 						align="center"
 						as={motion.div}
 						variants={fadeInUp}
 						initial={"initial"}
-						whileInView={"animate"}>
+						whileInView={"animate"}
+						viewport={{ once: true }}>
 						<Box>
 							<Image src="/images/transaction.jpg" />
 						</Box>
