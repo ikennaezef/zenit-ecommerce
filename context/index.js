@@ -1,5 +1,6 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 import toast from "react-hot-toast";
+import { getFromStorage, setToStorage } from "../utils/localStorage";
 
 const AppContext = createContext(null);
 
@@ -13,6 +14,13 @@ export const ContextWrapper = ({ children }) => {
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [totalQuantities, setTotalQuantities] = useState(0);
 	const [qty, setQty] = useState(1);
+
+	useEffect(() => {
+		getFromStorage("cartItems") && setCartItems(getFromStorage("cartItems"));
+		getFromStorage("totalPrice") && setTotalPrice(getFromStorage("totalPrice"));
+		getFromStorage("totalQuantities") &&
+			setTotalQuantities(getFromStorage("totalQuantities"));
+	}, []);
 
 	const incQty = () => {
 		setQty((prevQty) => prevQty + 1);
@@ -31,10 +39,13 @@ export const ContextWrapper = ({ children }) => {
 			(item) => item._id === product._id
 		);
 
-		setTotalPrice(
-			(prevTotalPrice) => prevTotalPrice + product.price * quantity
-		);
-		setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
+		const newTotalPrice = totalPrice + product.price * quantity;
+		setTotalPrice(newTotalPrice);
+		setToStorage("totalPrice", newTotalPrice);
+
+		const newTotalQuantities = totalQuantities + quantity;
+		setTotalQuantities(newTotalQuantities);
+		setToStorage("totalQuantities", newTotalQuantities);
 
 		if (checkProductInCart) {
 			const updatedCartItems = cartItems.map((cartProduct) => {
@@ -46,10 +57,11 @@ export const ContextWrapper = ({ children }) => {
 			});
 
 			setCartItems(updatedCartItems);
-			console.log(updatedCartItems);
+			setToStorage("cartItems", updatedCartItems);
 		} else {
 			product.quantity = quantity;
 			setCartItems([...cartItems, { ...product }]);
+			setToStorage("cartItems", [...cartItems, { ...product }]);
 		}
 
 		toast.success(`${qty} ${product.title} added to the cart.`);
@@ -57,13 +69,17 @@ export const ContextWrapper = ({ children }) => {
 	};
 
 	const onRemove = (product) => {
-		setCartItems(cartItems.filter((item) => item._id !== product._id));
-		setTotalQuantities(
-			(prevTotalQuantities) => prevTotalQuantities - product.quantity
-		);
-		setTotalPrice(
-			(prevTotalPrice) => prevTotalPrice - product.price * product.quantity
-		);
+		let newCart = cartItems.filter((item) => item._id !== product._id);
+		const newTotalQuantity =
+			totalQuantities > 0 ? totalQuantities - product.quantity : 0;
+		const newTotalPrice = totalPrice - product.price * product.quantity;
+		setCartItems(newCart);
+		setToStorage("cartItems", newCart);
+		setTotalQuantities(newTotalQuantity);
+		setToStorage("totalQuantities", newTotalQuantity);
+		setTotalPrice(newTotalPrice);
+		setToStorage("totalPrice", newTotalPrice);
+		toast.error(`${product.title} removed from cart.`);
 	};
 
 	const toggleCartItemQuantity = (id, value) => {
@@ -76,9 +92,15 @@ export const ContextWrapper = ({ children }) => {
 					: product
 			);
 			setCartItems(newCartItems);
+			setToStorage("cartItems", newCartItems);
 
-			setTotalPrice((prevTotalPrice) => prevTotalPrice + foundProduct.price);
-			setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1);
+			const newTotalPrice = totalPrice + foundProduct.price;
+			setTotalPrice(newTotalPrice);
+			setToStorage("totalPrice", newTotalPrice);
+
+			const newTotalQuantity = totalQuantities + 1;
+			setTotalQuantities(newTotalQuantity);
+			setToStorage("totalQuantities", newTotalQuantity);
 		} else if ((value = "dec")) {
 			if (foundProduct.quantity > 1) {
 				let newCartItems = cartItems.map((product) =>
@@ -87,9 +109,15 @@ export const ContextWrapper = ({ children }) => {
 						: product
 				);
 				setCartItems(newCartItems);
+				setToStorage("cartItems", newCartItems);
 
-				setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price);
-				setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1);
+				const newTotalPrice = totalPrice - foundProduct.price;
+				setTotalPrice(newTotalPrice);
+				setToStorage("totalPrice", newTotalPrice);
+
+				const newTotalQuantity = totalQuantities - 1;
+				setTotalQuantities(newTotalQuantity);
+				setToStorage("totalQuantities", newTotalQuantity);
 			}
 		}
 	};
