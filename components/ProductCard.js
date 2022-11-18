@@ -1,13 +1,16 @@
 import React from "react";
-import Link from "next/link";
+import NextLink from "next/link";
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { appear } from "../utils/MotionVariants";
 import { urlFor } from "../lib/sanity";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { AiOutlineHeart } from "react-icons/ai";
+import { useAppContext } from "../context";
 
 const ProductCard = ({ product }) => {
+	const { onAdd, qty } = useAppContext();
+
 	return (
 		<Box
 			role="group"
@@ -44,6 +47,7 @@ const ProductCard = ({ product }) => {
 					top="0.5rem"
 					right="0.5rem">
 					<Button
+						onClick={() => onAdd(product, qty)}
 						bg="white"
 						rounded="full"
 						boxSize="3rem"
@@ -64,7 +68,7 @@ const ProductCard = ({ product }) => {
 				</Flex>
 			</Box>
 			<Box mb={2}>
-				<Link href={`/product/${product.slug.current}`}>
+				<NextLink href={`/product/${product.slug.current}`}>
 					<Button
 						w="full"
 						py={6}
@@ -75,7 +79,7 @@ const ProductCard = ({ product }) => {
 						_hover={{ bgColor: "black", color: "white" }}>
 						VIEW
 					</Button>
-				</Link>
+				</NextLink>
 			</Box>
 			<Box textAlign="center" pb={2}>
 				<Text color="gray.400">{product.vendor.toUpperCase()}</Text>
