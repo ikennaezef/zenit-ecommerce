@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NextLink from "next/link";
 import {
 	Box,
@@ -19,6 +19,7 @@ import {
 	Textarea,
 	Divider,
 	Checkbox,
+	Progress,
 } from "@chakra-ui/react";
 import { useAppContext } from "../context";
 import { urlFor } from "../lib/sanity";
@@ -33,8 +34,26 @@ import { Meta } from "../components";
 
 const cart = () => {
 	const [checked, setChecked] = useState(false);
+	const [progress, setProgress] = useState("0.00");
+	const [shipping, setShipping] = useState(0);
 	const { cartItems, totalPrice, toggleCartItemQuantity, onRemove } =
 		useAppContext();
+
+	useEffect(() => {
+		const percent = Math.floor((totalPrice / 25000) * 100);
+		setProgress(percent);
+	}, [cartItems]);
+
+	useEffect(() => {
+		if (cartItems.length < 1) {
+			setShipping("₦0.00");
+		} else {
+			setShipping("₦2000.00");
+		}
+		if (progress >= 100) {
+			setShipping("✨Free✨");
+		}
+	}, [progress, cartItems]);
 
 	return (
 		<Box>
@@ -225,21 +244,41 @@ const cart = () => {
 							<Divider py={2} />
 							<Flex justify="space-between">
 								<Text>Shipping: </Text>
-								<Text>
-									{"₦"}
-									{cartItems.length > 0 ? "2000.00" : "0.00"}
-								</Text>
+								<Text>{shipping}</Text>
 							</Flex>
 							<Divider py={2} />
 							<Flex justify="space-between">
 								<Text color="blue.500">Total: </Text>
 								<Text color="blue.500" fontWeight="600">
 									{"₦"}
-									{cartItems.length > 0
+									{cartItems.length > 0 && progress < 100
 										? (totalPrice + 2000).toFixed(2)
+										: progress >= 100
+										? totalPrice.toFixed(2)
 										: "0.00"}
 								</Text>
 							</Flex>
+							<Box py={5}>
+								<Text>Free Shipping for orders above {"₦"}25,000</Text>
+								<Box py={3}>
+									<Progress
+										rounded="sm"
+										hasStripe
+										isAnimated
+										value={progress}
+										colorScheme={
+											progress < 50
+												? "yellow"
+												: progress < 80
+												? "teal"
+												: "green"
+										}
+									/>
+								</Box>
+								{progress >= 100 && (
+									<Text>✨ Hooray! You qualify for free shipping ✨</Text>
+								)}
+							</Box>
 							<Divider py={2} />
 							{cartItems.length > 0 && (
 								<>
