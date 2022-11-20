@@ -15,16 +15,20 @@ import {
 	Show,
 	CloseButton,
 	UnorderedList,
-	ListItem,
 	Divider,
 } from "@chakra-ui/react";
 import { FaBars, FaMountain, FaSearch } from "react-icons/fa";
 import { GiMountaintop } from "react-icons/gi";
 import { AiOutlineShopping } from "react-icons/ai";
-import { BiCart, BiChevronRight } from "react-icons/bi";
+import { BiChevronRight } from "react-icons/bi";
+import { useAppContext } from "../context";
+import { AnimatePresence, motion, useCycle } from "framer-motion";
+import { navContainer, navItems } from "../utils/MotionVariants";
 
 const NavBar = () => {
 	const [showNav, setShowNav] = useState(false);
+	const [open, cycleOpen] = useCycle(false, true);
+	const { totalQuantities } = useAppContext();
 
 	const handleClick = () => {
 		console.log("clicked");
@@ -36,7 +40,7 @@ const NavBar = () => {
 				<Box py={5}>
 					<Flex align="center" justify="space-between">
 						<NextLink href="/">
-							<Flex align="center" gap="0.2rem">
+							<Flex align="center" gap="0.2rem" cursor="pointer">
 								<GiMountaintop color="#2B6CB0" fontSize="1.7rem" />
 								<Heading fontWeight={700} fontSize="2rem">
 									ZENIT
@@ -62,25 +66,27 @@ const NavBar = () => {
 							</Box>
 						</Show>
 						<Flex>
-							<Button variant="ghost" p={2} position="relative">
-								<AiOutlineShopping fontSize="1.8rem" />
-								<Flex
-									align="center"
-									rounded="full"
-									justify="center"
-									boxSize="1.2rem"
-									position="absolute"
-									top="5px"
-									right="2px"
-									p={1}
-									fontSize="0.8rem"
-									color="white"
-									bg="red.500">
-									0
-								</Flex>
-							</Button>
+							<NextLink href="/cart">
+								<Button variant="ghost" p={2} position="relative">
+									<AiOutlineShopping fontSize="1.8rem" />
+									<Flex
+										align="center"
+										rounded="full"
+										justify="center"
+										boxSize="1.2rem"
+										position="absolute"
+										top="5px"
+										right="2px"
+										p={1}
+										fontSize="0.8rem"
+										color="white"
+										bg="red.500">
+										{totalQuantities}
+									</Flex>
+								</Button>
+							</NextLink>
 							<Hide above="md">
-								<Button variant="ghost" onClick={() => setShowNav(true)}>
+								<Button variant="ghost" onClick={cycleOpen}>
 									<FaBars fontSize="1.2rem" />
 								</Button>
 							</Hide>
@@ -103,74 +109,102 @@ const NavBar = () => {
 						</Flex>
 					</Show>
 					<Hide above="md">
-						<Box
-							position="absolute"
-							top="0"
-							right={showNav ? "0" : "-100%"}
-							bg="white"
-							zIndex={50}
-							px={5}
-							py={10}
-							w="full"
-							h="100vh">
-							<Box>
-								<Flex justify="end" mb={16}>
-									<CloseButton
-										size="1.5rem"
-										onClick={() => setShowNav(false)}
-									/>
-								</Flex>
-								<UnorderedList listStyleType="none">
-									<ListItem fontSize="1.3rem">
-										<NextLink href="/">
-											<Link
-												display="flex"
-												justifyContent="space-between"
-												onClick={() => setShowNav(false)}>
-												Home{" "}
-												<BiChevronRight fontSize="1.6rem" color="#888888" />
-											</Link>
-										</NextLink>
-									</ListItem>
-									<Divider my={4} bg="#CCCCCC" />
-									<ListItem fontSize="1.3rem">
-										<NextLink href="/categories">
-											<Link
-												display="flex"
-												justifyContent="space-between"
-												onClick={() => setShowNav(false)}>
-												Categories{" "}
-												<BiChevronRight fontSize="1.6rem" color="#888888" />
-											</Link>
-										</NextLink>
-									</ListItem>
-									<Divider my={4} bg="#CCCCCC" />
-									<ListItem fontSize="1.3rem">
-										<NextLink href="/blog">
-											<Link
-												display="flex"
-												justifyContent="space-between"
-												onClick={() => setShowNav(false)}>
-												Blog{" "}
-												<BiChevronRight fontSize="1.6rem" color="#888888" />
-											</Link>
-										</NextLink>
-									</ListItem>
-									<Divider my={4} bg="#CCCCCC" />
-									<ListItem fontSize="1.3rem">
-										<NextLink href="/about">
-											<Link
-												display="flex"
-												justifyContent="space-between"
-												onClick={() => setShowNav(false)}>
-												About{" "}
-												<BiChevronRight fontSize="1.6rem" color="#888888" />
-											</Link>
-										</NextLink>
-									</ListItem>
-								</UnorderedList>
-							</Box>
-						</Box>
+						<AnimatePresence>
+							{open && (
+								<Box
+									as={motion.div}
+									initial={{ right: "-100&" }}
+									animate={{ right: 0 }}
+									exit={{
+										right: "-100%",
+										transition: { delay: 0.5, duration: 0.3 },
+									}}
+									position="absolute"
+									top="0"
+									right={open ? "0" : "-100%"}
+									bg="white"
+									zIndex={50}
+									px={5}
+									py={10}
+									w="full"
+									h="100vh">
+									<Flex justify="end" mb={16}>
+										<CloseButton size="1.5rem" onClick={cycleOpen} />
+									</Flex>
+									<Box
+										listStyleType="none"
+										as={motion.div}
+										initial="closed"
+										animate="open"
+										exit="closed"
+										variants={navContainer}>
+										<Box
+											fontSize="1.3rem"
+											mb={3}
+											as={motion.div}
+											variants={navItems}>
+											<NextLink href="/">
+												<Link
+													display="flex"
+													justifyContent="space-between"
+													onClick={cycleOpen}>
+													Home{" "}
+													<BiChevronRight fontSize="1.6rem" color="#888888" />
+												</Link>
+											</NextLink>
+										</Box>
+										<Divider my={4} bg="#CCCCCC" />
+										<Box
+											fontSize="1.3rem"
+											mb={3}
+											as={motion.div}
+											variants={navItems}>
+											<NextLink href="/categories">
+												<Link
+													display="flex"
+													justifyContent="space-between"
+													onClick={cycleOpen}>
+													Categories{" "}
+													<BiChevronRight fontSize="1.6rem" color="#888888" />
+												</Link>
+											</NextLink>
+										</Box>
+										<Divider my={4} bg="#CCCCCC" />
+										<Box
+											fontSize="1.3rem"
+											mb={3}
+											as={motion.div}
+											variants={navItems}>
+											<NextLink href="/blog">
+												<Link
+													display="flex"
+													justifyContent="space-between"
+													onClick={cycleOpen}>
+													Blog{" "}
+													<BiChevronRight fontSize="1.6rem" color="#888888" />
+												</Link>
+											</NextLink>
+										</Box>
+										<Divider my={4} bg="#CCCCCC" />
+										<Box
+											fontSize="1.3rem"
+											mb={3}
+											as={motion.div}
+											variants={navItems}>
+											<NextLink href="/about">
+												<Link
+													display="flex"
+													justifyContent="space-between"
+													onClick={cycleOpen}>
+													About{" "}
+													<BiChevronRight fontSize="1.6rem" color="#888888" />
+												</Link>
+											</NextLink>
+										</Box>
+									</Box>
+								</Box>
+							)}
+						</AnimatePresence>
 					</Hide>
 				</Box>
 			</Container>
