@@ -1,3 +1,5 @@
+import React from "react";
+import NextLink from "next/link";
 import {
 	Box,
 	Button,
@@ -8,10 +10,10 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { TbTruckDelivery } from "react-icons/tb";
 import { RiCustomerServiceLine, RiSecurePaymentLine } from "react-icons/ri";
+import { appear, fadeInUp, staggerContainer } from "../utils/MotionVariants";
 
 const Banner = () => {
 	return (
@@ -26,31 +28,53 @@ const Banner = () => {
 				h="30rem">
 				<Container maxW="container.xl">
 					<Grid alignContent="center" py={5}>
-						<Box
-							color="white"
-							as={motion.div}
-							initial={{ opacity: 0, transition: { duration: 1 } }}
-							animate={{ opacity: 1 }}>
-							<Flex direction="column" spacing={1}>
-								<Text color="black" fontStyle="italic" fontWeight={500} mb={2}>
+						<Box color="white">
+							<Flex
+								as={motion.div}
+								initial="initial"
+								animate="animate"
+								variants={staggerContainer}
+								direction="column"
+								spacing={1}>
+								<Text
+									as={motion.p}
+									variants={fadeInUp}
+									color="black"
+									fontStyle="italic"
+									fontWeight={500}
+									mb={2}>
 									Buy 2 Get 1 Free!!
 								</Text>
-								<Heading fontWeight={700} fontSize="2.5rem" lineHeight={1}>
+								<Heading
+									as={motion.h2}
+									variants={fadeInUp}
+									fontWeight={700}
+									fontSize="2.5rem"
+									lineHeight={1}>
 									Fashionable
 								</Heading>
-								<Heading fontWeight={400}>Collection</Heading>
-								<Text fontSize={{ base: "0.8rem", md: "1rem" }}>
+								<Heading as={motion.h2} variants={fadeInUp} fontWeight={400}>
+									Collection
+								</Heading>
+								<Text
+									as={motion.p}
+									variants={fadeInUp}
+									fontSize={{ base: "0.8rem", md: "1rem" }}>
 									Get free shipping on all orders above N25,000
 								</Text>
-								<Button
-									mt={5}
-									bgColor="black"
-									width="fit-content"
-									rounded="sm"
-									rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}
-									_hover={{ transform: "scale(0.95)" }}>
-									Shop Now
-								</Button>
+								<NextLink href="/categories">
+									<Button
+										as={motion.button}
+										variants={fadeInUp}
+										mt={5}
+										bgColor="black"
+										width="fit-content"
+										rounded="sm"
+										rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}
+										_hover={{ transform: "scale(0.95)" }}>
+										Shop Now
+									</Button>
+								</NextLink>
 							</Flex>
 						</Box>
 					</Grid>
