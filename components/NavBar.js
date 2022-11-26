@@ -106,6 +106,9 @@ const NavBar = () => {
 							<NextLink href="/about">
 								<Link fontWeight={500}>About Us</Link>
 							</NextLink>
+							<NextLink href="/contact">
+								<Link fontWeight={500}>Contact</Link>
+							</NextLink>
 						</Flex>
 					</Show>
 					<Hide above="md">
@@ -197,6 +200,22 @@ const NavBar = () => {
 													justifyContent="space-between"
 													onClick={cycleOpen}>
 													About{" "}
+													<BiChevronRight fontSize="1.6rem" color="#888888" />
+												</Link>
+											</NextLink>
+										</Box>
+										<Divider my={4} bg="#CCCCCC" />
+										<Box
+											fontSize="1.3rem"
+											mb={3}
+											as={motion.div}
+											variants={navItems}>
+											<NextLink href="/contact">
+												<Link
+													display="flex"
+													justifyContent="space-between"
+													onClick={cycleOpen}>
+													Contact{" "}
 													<BiChevronRight fontSize="1.6rem" color="#888888" />
 												</Link>
 											</NextLink>
