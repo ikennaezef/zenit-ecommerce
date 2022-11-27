@@ -6,6 +6,7 @@ import {
 	Flex,
 	Grid,
 	Heading,
+	Image,
 	Input,
 	Text,
 	Textarea,
@@ -125,6 +126,15 @@ const contact = () => {
 							<StoreCard key={index} office={office} />
 						))}
 					</Grid>
+				</Box>
+				<Box mt={10}>
+					<Image
+						alt="map"
+						objectFit="cover"
+						w="full"
+						height="20rem"
+						src="/images/map.webp"
+					/>
 				</Box>
 			</Container>
 		</Box>
