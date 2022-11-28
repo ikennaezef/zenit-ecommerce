@@ -10,13 +10,14 @@ export const useAppContext = () => {
 
 export const ContextWrapper = ({ children }) => {
 	const [cartItems, setCartItems] = useState([]);
-	const [showCart, setShowCart] = useState(false);
+	const [favorites, setFavorites] = useState([]);
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [totalQuantities, setTotalQuantities] = useState(0);
 	const [qty, setQty] = useState(1);
 
 	useEffect(() => {
 		getFromStorage("cartItems") && setCartItems(getFromStorage("cartItems"));
+		getFromStorage("favorites") && setFavorites(getFromStorage("favorites"));
 		getFromStorage("totalPrice") && setTotalPrice(getFromStorage("totalPrice"));
 		getFromStorage("totalQuantities") &&
 			setTotalQuantities(getFromStorage("totalQuantities"));
@@ -54,6 +55,9 @@ export const ContextWrapper = ({ children }) => {
 						...cartProduct,
 						quantity: cartProduct.quantity + quantity,
 					};
+				else {
+					return cartProduct;
+				}
 			});
 
 			setCartItems(updatedCartItems);
@@ -122,11 +126,26 @@ export const ContextWrapper = ({ children }) => {
 		}
 	};
 
+	const onFavorite = (product) => {
+		const checkProductInFavorites = favorites.find(
+			(item) => item._id === product._id
+		);
+
+		if (checkProductInFavorites) {
+			let newFavorites = favorites.filter((item) => item._id !== product._id);
+			setFavorites(newFavorites);
+			setToStorage("favorites", newFavorites);
+			toast.error(`${product.title} removed from favorites`);
+		} else {
+			setFavorites([...favorites, product]);
+			setToStorage("favorites", [...favorites, product]);
+			toast.success(`${product.title} added to favorites`);
+		}
+	};
+
 	const values = {
 		cartItems,
 		setCartItems,
-		showCart,
-		setShowCart,
 		totalPrice,
 		setTotalPrice,
 		totalQuantities,
@@ -137,6 +156,8 @@ export const ContextWrapper = ({ children }) => {
 		onAdd,
 		onRemove,
 		toggleCartItemQuantity,
+		favorites,
+		onFavorite,
 	};
 
 	return <AppContext.Provider value={values}>{children}</AppContext.Provider>;

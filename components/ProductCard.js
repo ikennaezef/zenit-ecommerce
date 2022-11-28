@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NextLink from "next/link";
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { appear } from "../utils/MotionVariants";
 import { urlFor } from "../lib/sanity";
 import { HiOutlineShoppingBag } from "react-icons/hi";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useAppContext } from "../context";
 
 const ProductCard = ({ product }) => {
-	const { onAdd, qty } = useAppContext();
+	const { onAdd, qty, favorites, onFavorite } = useAppContext();
+	const [isFavorite, setIsFavorite] = useState(false);
+
+	useEffect(() => {
+		// console.log(favorites);
+		const favoriteIds = favorites.map((item) => item._id);
+		setIsFavorite(favorites.find((item) => item._id === product._id));
+		// console.log(first)
+	}, [favorites]);
 
 	return (
 		<Box
@@ -18,6 +26,7 @@ const ProductCard = ({ product }) => {
 			variants={appear}
 			initial={"initial"}
 			whileInView={"animate"}
+			viewport={{ once: true }}
 			shadow="md">
 			<Box position="relative">
 				{product?.onSale && (
@@ -27,6 +36,7 @@ const ProductCard = ({ product }) => {
 						px={6}
 						py={2}
 						position="absolute"
+						zIndex={20}
 						top="0"
 						left="0">
 						SALE
@@ -51,19 +61,28 @@ const ProductCard = ({ product }) => {
 						bg="white"
 						rounded="full"
 						boxSize="3rem"
+						borderWidth="1px"
+						borderColor="blackAlpha.200"
 						p={0}
 						color="blackAlpha.500"
 						_hover={{ color: "blue.500" }}>
 						<HiOutlineShoppingBag fontSize="1.3rem" color="inherit" />
 					</Button>
 					<Button
+						onClick={() => onFavorite(product)}
 						bg="white"
 						rounded="full"
 						boxSize="3rem"
+						borderWidth="1px"
+						borderColor="blackAlpha.200"
 						p={0}
 						color="blackAlpha.500"
 						_hover={{ color: "blue.500" }}>
-						<AiOutlineHeart fontSize="1.3rem" color="inherit" />
+						{isFavorite ? (
+							<AiFillHeart fontSize="1.3rem" color="#3182CE" />
+						) : (
+							<AiOutlineHeart fontSize="1.3rem" color="inherit" />
+						)}
 					</Button>
 				</Flex>
 			</Box>
