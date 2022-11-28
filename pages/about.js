@@ -1,3 +1,5 @@
+import React from "react";
+import Nextlink from "next/link";
 import {
 	Box,
 	Button,
@@ -9,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { fadeInUp, appear } from "../utils/MotionVariants";
-import React from "react";
 import { BiRightArrowAlt } from "react-icons/bi";
 
 const About = () => {
@@ -58,13 +59,15 @@ const About = () => {
 								aliquyam diam lorem kasd gubergren. Takimata et aliquyam clita
 								aliquyam. Clita at amet lorem diam tempor consetetur.
 							</Text>
-							<Button
-								mt={5}
-								variant="link"
-								color="black"
-								rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
-								VISIT OUR STORE
-							</Button>
+							<Nextlink href="/categories">
+								<Button
+									mt={5}
+									variant="link"
+									color="black"
+									rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
+									VISIT OUR STORE
+								</Button>
+							</Nextlink>
 						</Box>
 					</Flex>
 					<Flex
@@ -88,13 +91,15 @@ const About = () => {
 								aliquyam diam lorem kasd gubergren. Takimata et aliquyam clita
 								aliquyam. Clita at amet lorem diam tempor consetetur.
 							</Text>
-							<Button
-								mt={5}
-								variant="link"
-								color="black"
-								rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
-								CONTACT US
-							</Button>
+							<Nextlink href="/contact">
+								<Button
+									mt={5}
+									variant="link"
+									color="black"
+									rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
+									CONTACT US
+								</Button>
+							</Nextlink>
 						</Box>
 					</Flex>
 					<Flex
@@ -119,13 +124,15 @@ const About = () => {
 								aliquyam clita aliquyam. Clita at amet lorem diam tempor
 								consetetur.
 							</Text>
-							<Button
-								mt={5}
-								variant="link"
-								color="black"
-								rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
-								VISIT OUR STORE
-							</Button>
+							<Nextlink href="/categories">
+								<Button
+									mt={5}
+									variant="link"
+									color="black"
+									rightIcon={<BiRightArrowAlt fontSize="1.4rem" />}>
+									VISIT OUR STORE
+								</Button>
+							</Nextlink>
 						</Box>
 					</Flex>
 					<Box pt={16}>
