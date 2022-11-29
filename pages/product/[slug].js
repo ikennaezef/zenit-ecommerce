@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	Box,
 	Button,
@@ -7,7 +7,6 @@ import {
 	Heading,
 	Image,
 	Link,
-	List,
 	ListItem,
 	Text,
 	UnorderedList,
@@ -15,6 +14,8 @@ import {
 import { sanityClient, urlFor } from "../../lib/sanity";
 import PortableText from "react-portable-text";
 import {
+	AiFillHeart,
+	AiOutlineHeart,
 	AiOutlineMinus,
 	AiOutlinePlus,
 	AiOutlineSafety,
@@ -23,14 +24,27 @@ import {
 import { Meta, ProductsSection } from "../../components";
 import { useAppContext } from "../../context";
 import { RiTruckLine } from "react-icons/ri";
+import { motion } from "framer-motion";
+import { appear } from "../../utils/MotionVariants";
 
 const ProductDetail = ({ product, others }) => {
+	const [isFavorite, setIsFavorite] = useState(false);
 	const [currentImage, setCurrentImage] = useState(0);
-	const { qty, incQty, decQty, onAdd } = useAppContext();
+	const { qty, incQty, decQty, onAdd, favorites, onFavorite } = useAppContext();
+
+	useEffect(() => {
+		setIsFavorite(favorites.find((item) => item._id === product._id));
+	}, [favorites]);
+
 	return (
 		<Box>
 			<Meta title={`${product.vendor} - ${product.title}`} />
-			<Container maxWidth="container.xl">
+			<Container
+				maxWidth="container.xl"
+				as={motion.div}
+				variants={appear}
+				initial={"initial"}
+				animate={"animate"}>
 				<Flex py="3rem" direction={{ base: "column", md: "row" }} gap="2rem">
 					<Flex direction={{ base: "column", md: "row-reverse" }} gap={4}>
 						<Box>
@@ -95,11 +109,11 @@ const ProductDetail = ({ product, others }) => {
 								}}
 							/>
 						</Box>
-						<Flex mt={6} gap={3} align="center">
+						<Flex my={6} gap={3} align="center">
 							<Flex
 								align="center"
 								w="fit-content"
-								h="45px"
+								h="40px"
 								borderColor="blackAlpha.400"
 								borderWidth="1px">
 								<Button bg="transparent" rounded="none" onClick={decQty}>
@@ -118,8 +132,8 @@ const ProductDetail = ({ product, others }) => {
 								bgColor="blue.500"
 								_hover={{ bg: "blue.400" }}
 								color="white"
-								w="full"
-								h="45px"
+								w={{ base: "full", md: "auto" }}
+								h="40px"
 								px={8}
 								leftIcon={
 									<AiOutlineShopping fontSize="1.5rem" color="white" />
@@ -127,6 +141,20 @@ const ProductDetail = ({ product, others }) => {
 								Add To Cart
 							</Button>
 						</Flex>
+						<Button
+							onClick={() => onFavorite(product)}
+							rounded="none"
+							borderColor="blackAlpha.400"
+							borderWidth="1px"
+							leftIcon={
+								isFavorite ? (
+									<AiFillHeart fontSize="1.3rem" color="#3182CE" />
+								) : (
+									<AiOutlineHeart fontSize="1.3rem" color="inherit" />
+								)
+							}>
+							{isFavorite ? "Remove from Wishlist" : "Add to Wishlist"}
+						</Button>
 						<Box mt={8}>
 							<Flex align={"center"} gap={5} w="full">
 								<Box>
@@ -172,7 +200,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   }`;
 	const product = await sanityClient.fetch(query);
 
-	const othersQuery = `*[_type=="product" && slug.current!= '${slug}' && '${product.categories[0]}' in categories[]->title][0...4]{
+	const othersQuery = `*[_type=="product" && slug.current!= '${slug}' && '${product.categories[0]}' in categories[]->title][0...6]{
     categories,
     description,
     image,

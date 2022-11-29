@@ -135,11 +135,11 @@ export const ContextWrapper = ({ children }) => {
 			let newFavorites = favorites.filter((item) => item._id !== product._id);
 			setFavorites(newFavorites);
 			setToStorage("favorites", newFavorites);
-			toast.error(`${product.title} removed from favorites`);
+			toast.error(`${product.title} removed from wishlist`);
 		} else {
 			setFavorites([...favorites, product]);
 			setToStorage("favorites", [...favorites, product]);
-			toast.success(`${product.title} added to favorites`);
+			toast.success(`${product.title} added to wishlist`);
 		}
 	};
 
