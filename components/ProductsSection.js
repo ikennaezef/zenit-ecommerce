@@ -20,7 +20,11 @@ const ProductsSection = ({ title, products, extraLink }) => {
 				)}
 				<Grid
 					gap={4}
-					templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}>
+					templateColumns={{
+						base: "repeat(2, 1fr)",
+						md: "repeat(4, 1fr)",
+						lg: "repeat(6, 1fr)",
+					}}>
 					{products.map((product) => (
 						<ProductCard key={product._id} product={product} />
 					))}

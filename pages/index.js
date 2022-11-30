@@ -13,9 +13,9 @@ export default function Home({ products }) {
 		<div>
 			<Banner />
 			<Categories />
-			<ProductsSection title="Best Sellers" products={products.slice(1, 5)} />
+			<ProductsSection title="Best Sellers" products={products.slice(1, 7)} />
 			<SmallBanners />
-			<ProductsSection title="Our Featured" products={products.slice(4, 8)} />
+			<ProductsSection title="Our Featured" products={products.slice(7, 13)} />
 			<SalesBanner />
 		</div>
 	);

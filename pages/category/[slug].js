@@ -4,7 +4,6 @@ import { sanityClient } from "../../lib/sanity";
 import { ProductsSection } from "../../components";
 
 const Category = ({ category, products }) => {
-	console.log(products);
 	return (
 		<Box>
 			<Container maxWidth="container.xl">

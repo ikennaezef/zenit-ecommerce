@@ -38,7 +38,7 @@ const Categories = ({
 export default Categories;
 
 export const getServerSideProps = async () => {
-	const fashionQuery = `*[_type == 'product' && 'Fashion' in categories[]->title][0...4]{
+	const fashionQuery = `*[_type == 'product' && 'Fashion' in categories[]->title][0...6]{
 		_id,
 		'category': categories[0] -> title,
 		'vendor': vendor -> title,
@@ -50,7 +50,7 @@ export const getServerSideProps = async () => {
 		oldPrice
 	}`;
 
-	const homeQuery = `*[_type == 'product' && 'Home' in categories[]->title][0...4]{
+	const homeQuery = `*[_type == 'product' && 'Home' in categories[]->title][0...6]{
 		_id,
 		'category': categories[0] -> title,
 		'vendor': vendor -> title,
@@ -62,7 +62,7 @@ export const getServerSideProps = async () => {
 		oldPrice
 	}`;
 
-	const accessoriesQuery = `*[_type == 'product' && 'Accessories' in categories[]->title][0...4]{
+	const accessoriesQuery = `*[_type == 'product' && 'Accessories' in categories[]->title][0...6]{
 		_id,
 		'category': categories[0] -> title,
 		'vendor': vendor -> title,
@@ -74,7 +74,7 @@ export const getServerSideProps = async () => {
 		oldPrice
 	}`;
 
-	const electronicsQuery = `*[_type == 'product' && 'Electronics' in categories[]->title][0...4]{
+	const electronicsQuery = `*[_type == 'product' && 'Electronics' in categories[]->title][0...6]{
 		_id,
 		'category': categories[0] -> title,
 		'vendor': vendor -> title,
