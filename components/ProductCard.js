@@ -13,10 +13,7 @@ const ProductCard = ({ product }) => {
 	const [isFavorite, setIsFavorite] = useState(false);
 
 	useEffect(() => {
-		// console.log(favorites);
-		const favoriteIds = favorites.map((item) => item._id);
 		setIsFavorite(favorites.find((item) => item._id === product._id));
-		// console.log(first)
 	}, [favorites]);
 
 	return (
@@ -43,8 +40,8 @@ const ProductCard = ({ product }) => {
 					</Box>
 				)}
 				<Image
-					src={urlFor(product.image[0]).url()}
-					alt={product.title}
+					src={urlFor(product?.image[0]).url()}
+					alt={product?.title}
 					width="full"
 					minHeight={{ base: "14rem", md: "16rem" }}
 					objectFit="cover"
@@ -87,7 +84,7 @@ const ProductCard = ({ product }) => {
 				</Flex>
 			</Box>
 			<Box mb={2}>
-				<NextLink href={`/product/${product.slug.current}`}>
+				<NextLink href={`/product/${product?.slug?.current}`}>
 					<Button
 						w="full"
 						py={6}
@@ -101,15 +98,15 @@ const ProductCard = ({ product }) => {
 				</NextLink>
 			</Box>
 			<Box textAlign="center" pb={2}>
-				<Text color="gray.400">{product.vendor.toUpperCase()}</Text>
-				<Text fontSize="1.1rem">{product.title}</Text>
+				<Text color="gray.400">{product?.vendor.toUpperCase()}</Text>
+				<Text fontSize="1.1rem">{product?.title}</Text>
 				<Text fontWeight={600} fontSize="1.1rem" color="orange.400">
 					{"₦"}
-					{product.price.toFixed(2)}
+					{product?.price.toFixed(2)}
 				</Text>
 				{product?.onSale && (
 					<Text as="s" color="gray.400">
-						N{product?.oldPrice?.toFixed(2)}
+						N{product?.oldPrice.toFixed(2)}
 					</Text>
 				)}
 			</Box>
