@@ -8,16 +8,14 @@ import {
 	Input,
 	InputGroup,
 	InputRightElement,
-	Text,
 	Link,
 	Heading,
 	Hide,
 	Show,
 	CloseButton,
-	UnorderedList,
 	Divider,
 } from "@chakra-ui/react";
-import { FaBars, FaMountain, FaSearch } from "react-icons/fa";
+import { FaBars, FaSearch } from "react-icons/fa";
 import { GiMountaintop } from "react-icons/gi";
 import { AiOutlineShopping } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
@@ -26,7 +24,6 @@ import { AnimatePresence, motion, useCycle } from "framer-motion";
 import { navContainer, navItems } from "../utils/MotionVariants";
 
 const NavBar = () => {
-	const [showNav, setShowNav] = useState(false);
 	const [open, cycleOpen] = useCycle(false, true);
 	const { totalQuantities } = useAppContext();
 
