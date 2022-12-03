@@ -52,6 +52,9 @@ const ProductCard = ({ product }) => {
 					direction="column"
 					gap={2}
 					position="absolute"
+					transform="translateX(50px)"
+					opacity="0"
+					_groupHover={{ transform: "translateX(0)", opacity: 1 }}
 					top="0.5rem"
 					right="0.5rem">
 					<Button
@@ -84,7 +87,11 @@ const ProductCard = ({ product }) => {
 					</Button>
 				</Flex>
 			</Box>
-			<Box mb={2}>
+			<Box
+				mb={2}
+				transform="translateY(30px)"
+				opacity="0"
+				_groupHover={{ transform: "translateY(0)", opacity: 1 }}>
 				<NextLink href={`/product/${product?.slug?.current}`}>
 					<Button
 						w="full"
