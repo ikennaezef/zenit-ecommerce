@@ -24,7 +24,8 @@ const ProductCard = ({ product }) => {
 			initial={"initial"}
 			whileInView={"animate"}
 			viewport={{ once: true }}
-			shadow="md">
+			shadow="md"
+			overflow="hidden">
 			<Box position="relative">
 				{product?.onSale && (
 					<Box
@@ -45,7 +46,7 @@ const ProductCard = ({ product }) => {
 					width="full"
 					minHeight={{ base: "14rem", md: "16rem" }}
 					objectFit="cover"
-					_groupHover={{ transform: "scale(1.05)" }}
+					_groupHover={{ transform: "scale(1.1)" }}
 				/>
 				<Flex
 					direction="column"

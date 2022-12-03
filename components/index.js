@@ -1,7 +1,6 @@
 export { default as NavBar } from "./NavBar";
 export { default as Meta } from "./Meta";
 export { default as Banner } from "./Banner";
-export { default as Cart } from "./Cart";
 export { default as SalesBanner } from "./SalesBanner";
 export { default as SmallBanners } from "./SmallBanners";
 export { default as Categories } from "./Categories";
