@@ -96,12 +96,14 @@ const Footer = () => {
 								Contact Info
 							</Heading>
 							<Flex direction="column">
-								<Link
-									color="whiteAlpha.600"
-									mb={2}
-									_hover={{ color: "blue.600" }}>
-									About Us
-								</Link>
+								<NextLink href="/about">
+									<Link
+										color="whiteAlpha.600"
+										mb={2}
+										_hover={{ color: "blue.600" }}>
+										About Us
+									</Link>
+								</NextLink>
 								<Link
 									color="whiteAlpha.600"
 									mb={2}
@@ -145,18 +147,22 @@ const Footer = () => {
 									_hover={{ color: "blue.600" }}>
 									Order History
 								</Link>
-								<Link
-									color="whiteAlpha.600"
-									mb={2}
-									_hover={{ color: "blue.600" }}>
-									View Cart
-								</Link>
-								<Link
-									color="whiteAlpha.600"
-									mb={2}
-									_hover={{ color: "blue.600" }}>
-									My Wishlist
-								</Link>
+								<NextLink href="/cart">
+									<Link
+										color="whiteAlpha.600"
+										mb={2}
+										_hover={{ color: "blue.600" }}>
+										View Cart
+									</Link>
+								</NextLink>
+								<NextLink href="/wishlist">
+									<Link
+										color="whiteAlpha.600"
+										mb={2}
+										_hover={{ color: "blue.600" }}>
+										My Wishlist
+									</Link>
+								</NextLink>
 								<Link
 									color="whiteAlpha.600"
 									mb={2}
