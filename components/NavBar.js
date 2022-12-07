@@ -175,6 +175,22 @@ const NavBar = () => {
 											mb={3}
 											as={motion.div}
 											variants={navItems}>
+											<NextLink href="/wishlist">
+												<Link
+													display="flex"
+													justifyContent="space-between"
+													onClick={cycleOpen}>
+													My Wishlist{" "}
+													<BiChevronRight fontSize="1.6rem" color="#888888" />
+												</Link>
+											</NextLink>
+										</Box>
+										<Divider my={4} bg="#CCCCCC" />
+										<Box
+											fontSize="1.3rem"
+											mb={3}
+											as={motion.div}
+											variants={navItems}>
 											<NextLink href="/blog">
 												<Link
 													display="flex"
