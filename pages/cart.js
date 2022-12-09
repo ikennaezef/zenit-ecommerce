@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import {
 	Box,
 	Container,
@@ -20,6 +21,7 @@ import {
 	Divider,
 	Checkbox,
 	Progress,
+	Heading,
 } from "@chakra-ui/react";
 import { useAppContext } from "../context";
 import { urlFor } from "../lib/sanity";
@@ -33,6 +35,8 @@ import { BiRightArrowAlt } from "react-icons/bi";
 import { Meta } from "../components";
 
 const cart = () => {
+	const router = useRouter();
+
 	const [checked, setChecked] = useState(false);
 	const [progress, setProgress] = useState("0.00");
 	const [shipping, setShipping] = useState(0);
@@ -59,6 +63,7 @@ const cart = () => {
 		<Box>
 			<Meta title="Your Cart" />
 			<Container maxWidth="container.xl">
+				<Heading mt={6}>Your Cart</Heading>
 				<Flex gap={5} direction={{ base: "column", md: "row" }} py={6}>
 					<Box w={{ base: "full", md: "70%" }}>
 						{cartItems.length > 0 && (
@@ -79,13 +84,14 @@ const cart = () => {
 														<Th isNumeric color="blackAlpha.600">
 															Total
 														</Th>
+														<Th isNumeric></Th>
 													</Tr>
 												</Thead>
 												<Tbody>
 													{cartItems.map((product, index) => (
 														<Tr key={index}>
 															<Td>
-																<Flex gap={3} align="center">
+																<Flex gap={3} pr={1} align="center">
 																	<Box minWidth="30%">
 																		<Image
 																			src={urlFor(product?.image[0]).url()}
@@ -101,7 +107,7 @@ const cart = () => {
 																</Flex>
 															</Td>
 															<Td isNumeric>
-																<Text>
+																<Text pl={2}>
 																	{"₦"}
 																	{product.price.toFixed(2)}
 																</Text>
@@ -134,6 +140,17 @@ const cart = () => {
 																		2
 																	)}
 																</Text>
+															</Td>
+															<Td isNumeric>
+																<Button
+																	bg="red.500"
+																	w="1.5rem"
+																	h="2rem"
+																	p={0}
+																	_hover={{ bg: "red.400" }}
+																	onClick={() => onRemove(product)}>
+																	<RiCloseLine fontSize="1rem" color="white" />
+																</Button>
 															</Td>
 														</Tr>
 													))}
@@ -199,6 +216,7 @@ const cart = () => {
 								</Box>
 								<Box mt={12}>
 									<Textarea
+										rows={6}
 										size="lg"
 										placeholder="Instructions for the seller"
 									/>
@@ -290,6 +308,7 @@ const cart = () => {
 									</Checkbox>
 									<Flex justify="center" direction="column" gap={5}>
 										<Button
+											onClick={() => router.push("/success")}
 											isDisabled={!checked}
 											w={{ base: "full", md: "auto" }}
 											mt={2}
