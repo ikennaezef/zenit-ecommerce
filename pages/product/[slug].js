@@ -62,7 +62,12 @@ const ProductDetail = ({ product, others }) => {
 									borderWidth="1px"
 									borderColor={currentImage === index ? "blue.500" : "gray.200"}
 									onClick={() => setCurrentImage(index)}>
-									<Image src={urlFor(img).url()} w="5rem" objectFit="cover" />
+									<Image
+										src={urlFor(img).url()}
+										w="5rem"
+										objectFit="cover"
+										alt={product.title}
+									/>
 								</Box>
 							))}
 						</Flex>

@@ -49,7 +49,7 @@ const About = () => {
 						gap={6}
 						align="center">
 						<Box>
-							<Image src="/images/customer.jpg" />
+							<Image src="/images/customer.jpg" alt="happy customer" />
 						</Box>
 						<Box>
 							<Heading>We Provide Quality and Fashionable Products</Heading>
@@ -81,7 +81,7 @@ const About = () => {
 						whileInView={"animate"}
 						viewport={{ once: true }}>
 						<Box>
-							<Image src="/images/support.jpg" />
+							<Image src="/images/support.jpg" alt="customer support staff" />
 						</Box>
 						<Box>
 							<Heading>Expect Restless and Amazing Support</Heading>
@@ -113,7 +113,10 @@ const About = () => {
 						whileInView={"animate"}
 						viewport={{ once: true }}>
 						<Box>
-							<Image src="/images/transaction.jpg" />
+							<Image
+								src="/images/transaction.jpg"
+								alt="person shopping online with a credit card"
+							/>
 						</Box>
 						<Box>
 							<Heading>Easy Checkout Process</Heading>
@@ -146,7 +149,11 @@ const About = () => {
 									initial={"initial"}
 									whileInView={"animate"}>
 									<Box height="18rem" overflow="hidden" mb={4} w="18rem">
-										<Image src="/images/alex.jpg" w="full" />
+										<Image
+											src="/images/alex.jpg"
+											w="full"
+											alt="Alexander Hipp"
+										/>
 									</Box>
 									<Text fontSize="1.2rem" fontWeight="600">
 										ALEXANDER HIPP
@@ -160,7 +167,11 @@ const About = () => {
 									initial={"initial"}
 									whileInView={"animate"}>
 									<Box height="18rem" overflow="hidden" mb={4} w="18rem">
-										<Image src="/images/derick.jpg" maxWidth="full" />
+										<Image
+											src="/images/derick.jpg"
+											maxWidth="full"
+											alt="Derrick Mckinney"
+										/>
 									</Box>
 									<Text fontSize="1.2rem" fontWeight="600">
 										DERICK MCKINNEY
@@ -179,7 +190,12 @@ const About = () => {
 										w="18rem"
 										overflow="hidden"
 										mb={4}>
-										<Image src="/images/jorik.jpg" w="full" objectFit="cover" />
+										<Image
+											src="/images/jorik.jpg"
+											w="full"
+											objectFit="cover"
+											alt="Jorik Kleen"
+										/>
 									</Flex>
 									<Text fontSize="1.2rem" fontWeight="600">
 										JORIK KLEEN

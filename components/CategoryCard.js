@@ -3,7 +3,7 @@ import NextLink from "next/link";
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
-const CategoryCard = ({ category, link }) => {
+const CategoryCard = ({ category }) => {
 	return (
 		<Box
 			position="relative"
@@ -26,6 +26,7 @@ const CategoryCard = ({ category, link }) => {
 			}}>
 			<Image
 				src={`/images/${category.image}`}
+				alt={category.title}
 				rounded="md"
 				h={{ base: "10rem", md: "12rem" }}
 				w="full"

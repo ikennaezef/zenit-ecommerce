@@ -3,7 +3,7 @@ import React from "react";
 import { ProductsSection } from "../components";
 import { sanityClient } from "../lib/sanity";
 
-const Categories = ({
+const CategoriesPage = ({
 	fashionProducts,
 	homeProducts,
 	accessoriesProducts,
@@ -35,7 +35,7 @@ const Categories = ({
 	);
 };
 
-export default Categories;
+export default CategoriesPage;
 
 export const getServerSideProps = async () => {
 	const fashionQuery = `*[_type == 'product' && 'Fashion' in categories[]->title][0...6]{

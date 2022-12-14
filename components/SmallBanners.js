@@ -40,6 +40,7 @@ const SmallBanners = () => {
 						}}>
 						<Image
 							src={`/images/men.jpg`}
+							alt="a fashionable man"
 							rounded="md"
 							h="full"
 							w="full"
@@ -95,6 +96,7 @@ const SmallBanners = () => {
 						}}>
 						<Image
 							src={`/images/pattern.jpg`}
+							alt=""
 							rounded="md"
 							h="full"
 							w="full"
@@ -149,6 +151,7 @@ const SmallBanners = () => {
 						}}>
 						<Image
 							src={`/images/woman-fashion.jpg`}
+							alt="a fashionable woman"
 							rounded="md"
 							h="full"
 							w="full"

@@ -13,7 +13,7 @@ import { ProductCard } from "../components";
 import { useAppContext } from "../context";
 import { AiOutlineHeart } from "react-icons/ai";
 
-const Wishlist = () => {
+const WishlistPage = () => {
 	const { favorites } = useAppContext();
 
 	return (
@@ -55,4 +55,4 @@ const Wishlist = () => {
 	);
 };
 
-export default Wishlist;
+export default WishlistPage;

@@ -3,13 +3,13 @@ import { Box, Container, Heading, Text } from "@chakra-ui/react";
 import { sanityClient } from "../../lib/sanity";
 import { ProductsSection } from "../../components";
 
-const Category = ({ category, products }) => {
+const CategoryPage = ({ category, products }) => {
 	return (
 		<Box>
 			<Container maxWidth="container.xl">
 				<Box textAlign="center">
-					<Heading>{category.title}</Heading>
-					<Text color="blackAlpha.700">{category.description}</Text>
+					<Heading>{category?.title}</Heading>
+					<Text color="blackAlpha.700">{category?.description}</Text>
 				</Box>
 				<ProductsSection products={products} />
 			</Container>
@@ -17,7 +17,7 @@ const Category = ({ category, products }) => {
 	);
 };
 
-export default Category;
+export default CategoryPage;
 
 export const getStaticProps = async ({ params: { slug } }) => {
 	const productsQuery = `*[_type=="product" && '${slug}' in categories[]->slug.current ]{
