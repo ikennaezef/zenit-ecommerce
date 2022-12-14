@@ -91,28 +91,30 @@ const ProductDetail = ({ product, others }) => {
 							{product.price.toFixed(2)}
 						</Text>
 						<Box mt={4}>
-							<PortableText
-								dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
-								projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
-								content={product.description}
-								serializers={{
-									h1: (props) => <Heading fontSize="2rem" {...props} />,
-									h2: (props) => <Heading fontSize="2rem" {...props} />,
-									li: ({ children }) => (
-										<UnorderedList>
-											<ListItem ml={4}>{children}</ListItem>
-										</UnorderedList>
-									),
-									link: ({ href, children }) => (
-										<Link href={href} color="blue.500">
-											{children}
-										</Link>
-									),
-									normal: ({ children }) => (
-										<div className="leading-relaxed my-4">{children}</div>
-									),
-								}}
-							/>
+							{product.description && (
+								<PortableText
+									dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
+									projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+									content={product?.description}
+									serializers={{
+										h1: (props) => <Heading fontSize="2rem" {...props} />,
+										h2: (props) => <Heading fontSize="2rem" {...props} />,
+										li: ({ children }) => (
+											<UnorderedList>
+												<ListItem ml={4}>{children}</ListItem>
+											</UnorderedList>
+										),
+										link: ({ href, children }) => (
+											<Link href={href} color="blue.500">
+												{children}
+											</Link>
+										),
+										normal: ({ children }) => (
+											<div className="leading-relaxed my-4">{children}</div>
+										),
+									}}
+								/>
+							)}
 						</Box>
 						<Flex my={6} gap={3} align="center">
 							<Flex
