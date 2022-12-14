@@ -36,7 +36,7 @@ const Wishlist = () => {
 					<Flex direction="column" align="center" py={8}>
 						<AiOutlineHeart size={150} color="#BBBBBB" />
 						<Text fontSize="1.1rem" mb={6} textAlign="center">
-							You don't have any products on your wishlist.
+							{"You don't have any products on your wishlist."}
 						</Text>
 						<NextLink href="/categories">
 							<Button
