@@ -91,7 +91,7 @@ const contact = () => {
 					</Box>
 					<Box>
 						<Box>
-							<Heading>Let's Connect</Heading>
+							<Heading>{"Let's Connect"}</Heading>
 							<Text mb={5}>
 								Your email address will not be published. Required fields are
 								marked *

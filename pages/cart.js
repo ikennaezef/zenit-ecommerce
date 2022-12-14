@@ -34,7 +34,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { BiRightArrowAlt } from "react-icons/bi";
 import { Meta } from "../components";
 
-const cart = () => {
+const Cart = () => {
 	const router = useRouter();
 
 	const [checked, setChecked] = useState(false);
@@ -338,4 +338,4 @@ const cart = () => {
 	);
 };
 
-export default cart;
+export default Cart;

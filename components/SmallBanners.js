@@ -57,7 +57,7 @@ const SmallBanners = () => {
 							left={{ base: 0, md: "1rem" }}
 							zIndex={30}>
 							<Text fontSize="1.7rem" fontWeight="600">
-								For Men's
+								{"For Men's"}
 							</Text>
 							<Text>STARTING AT N6000</Text>
 							<Divider h={1} w={12} bgColor="white" my={2} />
